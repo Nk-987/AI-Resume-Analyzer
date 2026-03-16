@@ -2,3 +2,4 @@ streamlit
 scikit-learn
 spacy
 PyPDF2
+numpy
