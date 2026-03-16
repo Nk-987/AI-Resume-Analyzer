@@ -1,15 +1,24 @@
 import streamlit as st
 import PyPDF2
-import spacy
+import string
+import nltk
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-nlp = spacy.load("en_core_web_sm")
+nltk.download("punkt")
+nltk.download("stopwords")
+
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 st.title("AI Resume Analyzer")
 
+st.write("Upload your resume and compare it with a job description to get an ATS match score.")
+
 resume_file = st.file_uploader("Upload Resume (PDF)", type=["pdf"])
 job_description = st.text_area("Paste Job Description")
+
 
 def extract_text_from_pdf(file):
     text = ""
@@ -22,10 +31,17 @@ def extract_text_from_pdf(file):
 
 
 def preprocess_text(text):
-    doc = nlp(text.lower())
-    tokens = [token.lemma_ for token in doc if not token.is_stop and token.is_alpha]
 
-    return " ".join(tokens)
+    stop_words = set(stopwords.words("english"))
+    tokens = word_tokenize(text.lower())
+
+    cleaned = []
+
+    for word in tokens:
+        if word not in stop_words and word not in string.punctuation:
+            cleaned.append(word)
+
+    return " ".join(cleaned)
 
 
 def calculate_similarity(resume, job):
@@ -50,8 +66,7 @@ if st.button("Analyze Resume"):
         score = calculate_similarity(resume_clean, job_clean)
 
         st.subheader("ATS Match Score")
-        st.write(round(score,2), "%")
+        st.success(str(round(score,2)) + " %")
 
     else:
-
-        st.warning("Please upload resume and paste job description")
+        st.warning("Please upload resume and paste job description.")
