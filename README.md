@@ -1,49 +1,49 @@
-# AI Resume Analyzer
+# 🤖 AI Resume Analyzer
 
-AI Resume Analyzer is a machine learning application that evaluates resumes against job descriptions and calculates an ATS match score.
+An AI-powered web application that analyzes resumes against job descriptions and provides an ATS (Applicant Tracking System) compatibility score.
 
-## Features
+---
 
-- Resume PDF upload
-- Job description analysis
-- ATS compatibility score
-- NLP-based keyword matching
+## 🚀 Features
 
-## Tech Stack
+- 📄 Upload resume (PDF)
+- 📝 Paste job description
+- 📊 ATS score calculation
+- 🔍 Keyword matching using NLP
+- ⚡ Instant feedback
+
+---
+
+## 🧠 Tech Stack
 
 - Python
 - Streamlit
 - Scikit-learn
-- NLP (TF-IDF)
+- NLP (TF-IDF, Cosine Similarity)
 - PyPDF2
 
-## How It Works
+---
 
-1. Upload resume
-2. Paste job description
-3. System preprocesses text
-4. TF-IDF vectorization
-5. Cosine similarity calculation
-6. ATS score generated
+## ⚙️ How It Works
 
-## Installation
+1. Extract text from resume
+2. Preprocess text (cleaning, tokenization)
+3. Convert text into vectors using TF-IDF
+4. Compare with job description using cosine similarity
+5. Generate ATS score
 
+---
 
+## 📊 Results
+
+- Accurate similarity scoring
+- Helps improve resume targeting
+- Identifies missing keywords
+
+---
+
+## ▶️ Run Locally
+
+```bash
 pip install streamlit scikit-learn nltk PyPDF2
-
-
-Run:
-
-
 streamlit run app.py
-
-
-## Use Case
-
-Helps job seekers evaluate how well their resume matches job descriptions.
-
-## Future Improvements
-
-- Skill gap detection
-- Resume improvement suggestions
-- Keyword highlighting
